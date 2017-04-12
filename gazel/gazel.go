@@ -298,7 +298,7 @@ func (v *Vendorer) updatePkg(path, _ string, pkg *build.Package) error {
 		return asExpr(merge(srcs...)).(*bzl.ListExpr)
 	}
 
-	srcs := srcNameMap(pkg.GoFiles, pkg.SFiles)
+	srcs := srcNameMap(pkg.GoFiles, pkg.IgnoredGoFiles, pkg.InvalidGoFiles, pkg.SFiles)
 	cgoSrcs := srcNameMap(pkg.CgoFiles, pkg.CFiles, pkg.CXXFiles, pkg.HFiles)
 	testSrcs := srcNameMap(pkg.TestGoFiles)
 	xtestSrcs := srcNameMap(pkg.XTestGoFiles)

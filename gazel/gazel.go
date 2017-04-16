@@ -14,8 +14,6 @@ import (
 	"sort"
 	"strings"
 
-	"go/path/filepath"
-
 	bzl "github.com/bazelbuild/buildifier/core"
 	"github.com/golang/glog"
 )
@@ -205,7 +203,7 @@ func (v *Vendorer) walk(root string, f func(path, ipath string, pkg *build.Packa
 	if root == vendorPath {
 		skipVendor = false
 	}
-	return sfilepath.Walk(root, func(path string, info os.FileInfo, err error) error {
+	return filepath.Walk(root, func(path string, info os.FileInfo, err error) error {
 		if err != nil {
 			return err
 		}
@@ -741,7 +739,7 @@ func context() *build.Context {
 		GOOS:        "linux",
 		GOROOT:      build.Default.GOROOT,
 		GOPATH:      build.Default.GOPATH,
-		ReleaseTags: []string{"go1.1", "go1.2", "go1.3", "go1.4", "go1.5", "go1.6", "go1.7"},
+		ReleaseTags: []string{"go1.1", "go1.2", "go1.3", "go1.4", "go1.5", "go1.6", "go1.7", "go1.8"},
 		Compiler:    runtime.Compiler,
 		CgoEnabled:  true,
 	}
